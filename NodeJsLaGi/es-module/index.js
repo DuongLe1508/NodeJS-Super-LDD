@@ -1,6 +1,10 @@
-import logName, { sum, divide } from './helpers.js'
+// import logName, { sum, divide } from './helpers.js'
 
-logName('NodeJsLaGi')
-console.log(divide(10, 2))
-console.log(sum(1, 2))
+// logName('NodeJsLaGi')
+// console.log(divide(10, 2))
+// console.log(sum(1, 2))
 // console.log(fname)
+
+import logName from "./helpers.js";
+
+logName("Duong Lee");
