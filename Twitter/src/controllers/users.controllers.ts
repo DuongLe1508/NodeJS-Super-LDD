@@ -6,17 +6,16 @@ import { ParamsDictionary } from 'express-serve-static-core'
 import usersService from '~/services/users.services'
 import { RegisterRequestBody } from '~/models/requests/User.requests'
 import next from 'next'
+import { ObjectId } from 'mongodb'
+import { USERS_MESSAGE } from '~/constants/messages'
 
-export const loginController = (req: Request, res: Response) => {
-  const { email, password } = req.body
-
-  if (email === 'duong@gmail.com' && password === 12345) {
-    return res.json({
-      message: 'login success'
-    })
-  }
-  return res.status(400).json({
-    notice: 'login fail'
+export const loginController = async (req: Request, res: Response) => {
+  const user = req.user as User
+  const user_id = user?._id as ObjectId
+  const result = await usersService.login(user_id.toString())
+  return res.json({
+    message: USERS_MESSAGE.LOGIN_SUCCESS,
+    result
   })
 }
 
@@ -29,7 +28,7 @@ export const registerController = async (
   const result = await usersService.register(req.body)
 
   return res.json({
-    message: 'Register success',
+    message: USERS_MESSAGE.REGISTER_SUCCESS,
     result
   })
 }

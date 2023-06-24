@@ -1,3 +1,26 @@
 export const USERS_MESSAGE = {
-  VALIDATION_ERROR: 'Validation error'
+  VALIDATION_ERROR: 'Validation error',
+  NAME_IS_REQUIRED: 'Name is required',
+  NAME_MUST_BE_A_STRING: 'Name must be a string',
+  NAME_LENGTH_MUST_BE_FROM_1_TO_100: 'Name must be from 1 to 100',
+  EMAIL_ALREADY_EXISTS: 'Email already exits',
+  EMAIL_IS_REQUIRED: 'Email is required',
+  EMAIL_IS_INVALID: 'Email is invalid',
+  PASSWORD_IS_REQUIRED: 'Password is required',
+  PASSWORD_MUST_BE_A_STRING: 'Password must be a string',
+  PASSWORD_MUST_BE_FROM_6_TO_50: 'Password must be from 6 to 50',
+  PASSWORD_MUST_BE_STRONG: 'Password must be includes follow rule to strong',
+  CONFIRM_PASSWORD_IS_REQUIRED: 'Confirm password is required',
+  CONFIRM_PASSWORD_MUST_BE_A_STRING: 'Confirm password must be a string',
+  CONFIRM_PASSWORD_MUST_BE_STRONG: 'Confirm password must be a strong',
+  CONFIRM_PASSWORD_NOT_MATCH_PASSWORD: 'Confirm password not match password',
+  DATE_OF_BIRTH_MUST_BE_IS08601: 'Date  of birth must be ISOS8601',
+  USER_NOT_FOUND: 'User not found',
+  EMAIL_OR_PASSWORD_IS_INCORRECT: 'Email or password is incorrect',
+  LOGIN_SUCCESS: 'Login success',
+  REGISTER_SUCCESS: 'Register success',
+  ACCESS_TOKEN_IS_REQUIRED: 'Access Token is required',
+  REFRESH_TOKEN_IS_REQUIRED: 'Refresh Token is required',
+  REFRESH_TOKEN_INVALID: 'Refresh Token invalid',
+  REFRESH_TOKEN_NOT_EXIST: 'Refresh token not exist'
 } as const
