@@ -5,7 +5,7 @@ import { EntityError, ErrorWithStatus } from '~/models/Errors'
 
 const defaultErrorhandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof ErrorWithStatus) {
-    res.status(err.status).json(omit(err, ['status']))
+    return res.status(err.status).json(omit(err, ['status']))
   }
   Object.getOwnPropertyNames(err).forEach((key) => {
     Object.defineProperty(err, key, { enumerable: true })

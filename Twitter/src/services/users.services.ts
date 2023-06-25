@@ -2,6 +2,7 @@ import { config } from 'dotenv'
 import { IsISO8601Options } from 'express-validator/src/options'
 import { ObjectId } from 'mongodb'
 import { TokenType } from '~/constants/enum'
+import { USERS_MESSAGE } from '~/constants/messages'
 import { RegisterRequestBody } from '~/models/requests/User.requests'
 import RefreshToken from '~/models/shemas/RefreshToken.schema'
 import User from '~/models/shemas/Users.schema'
@@ -50,7 +51,9 @@ class UsersService {
     const user_id = result.insertedId.toString()
 
     const [access_token, refresh_token] = await this.signAccessAndRefreshToken(user_id)
-    databaseService.refreshToken.insertOne(new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token }))
+    await databaseService.refreshToken.insertOne(
+      new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token })
+    )
     return {
       access_token,
       refresh_token
@@ -64,9 +67,19 @@ class UsersService {
 
   async login(user_id: string) {
     const [access_token, refresh_token] = await this.signAccessAndRefreshToken(user_id)
+    await databaseService.refreshToken.insertOne(
+      new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token })
+    )
     return {
       access_token,
       refresh_token
+    }
+  }
+
+  async logout(refresh_token: string) {
+    const result = await databaseService.refreshToken.deleteOne({ token: refresh_token })
+    return {
+      message: USERS_MESSAGE.LOGOUT_SUCCESS
     }
   }
 }

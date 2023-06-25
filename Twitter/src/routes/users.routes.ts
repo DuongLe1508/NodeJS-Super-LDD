@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { loginController, registerController } from '~/controllers/users.controllers'
+import { loginController, logoutController, registerController } from '~/controllers/users.controllers'
 import {
   accessTokenValidator,
   loginValidator,
@@ -27,14 +27,7 @@ usersRouter.post('/login', loginValidator, wrapRequestHandler(loginController))
  * Body: {refresh_token: string}
  
  */
-usersRouter.post(
-  '/logout',
-  accessTokenValidator,
-  refreshTokenValidator,
-  wrapRequestHandler((req, res) => {
-    return res.json({ message: 'logout OK' })
-  })
-)
+usersRouter.post('/logout', accessTokenValidator, refreshTokenValidator, wrapRequestHandler(logoutController))
 
 /**
  * Description: Register a new user
